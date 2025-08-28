@@ -63,21 +63,38 @@ static string MessageShift(string message, string key)
 {
     char[] messageLetters = message.ToCharArray();
     char[] keyLetters = key.ToCharArray();
+    string newMessage = "";
     int count = 0;
     foreach (char letter in messageLetters)
     {
-        LetterShift(letter, keyLetters[count]);
+        newMessage += LetterShift(letter, keyLetters[count]);
         count++;
         if (count >= keyLetters.Length)
         {
             count = 0;
         }
     }
-
+    return newMessage;
 }
 static char LetterShift(char message, char key)
 {
-    return message;
+    int shiftValue = 0;
+    int charIntValueKey = Convert.ToInt32(key);
+    int charIntValueMessage = Convert.ToInt32(key);
+
+    for (int i = 97; i <= 122; i++)
+    {
+        if (charIntValueKey == i)
+        {
+            break;
+        }
+        shiftValue++;
+    }
+
+    charIntValueMessage += shiftValue;
+
+    return Convert.ToChar(charIntValueMessage);
+
 }
 
 // static void TestIsLowercaseLetter() {
